@@ -1,0 +1,2 @@
+[flake8]
+exclude = bilibiliq/internal/pb,bilibiliq/internal/grpc,__pycache__,.venv,.git,

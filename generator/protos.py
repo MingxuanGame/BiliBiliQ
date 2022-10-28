@@ -46,7 +46,7 @@ def generate_py_files(file: Path) -> None:
             "-I=.",
             f"--python_out=../../{PB_OUT}",
             f"--grpc_python_out=../../{GRPC_OUT}",
-            f"--mypy_out=../../{GRPC_OUT}",
+            f"--mypy_out=../../{PB_OUT}",
             str(generated_file),
         ],
         cwd=PB_PATH,

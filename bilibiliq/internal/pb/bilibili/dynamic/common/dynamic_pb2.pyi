@@ -2033,7 +2033,7 @@ class DynVideoWatermark(google.protobuf.message.Message):
     TYPE_FIELD_NUMBER: builtins.int
     POSITION_FIELD_NUMBER: builtins.int
     state: builtins.int
-    """水印状态
+    """水印状态 
     0-关闭 1-打开 2-预览
     """
     type: builtins.int

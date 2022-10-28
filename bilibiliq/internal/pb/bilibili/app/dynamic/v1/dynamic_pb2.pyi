@@ -3280,7 +3280,7 @@ class ModuleDynamic(google.protobuf.message.Message):
     CARD_CURR_SEASON_FIELD_NUMBER: builtins.int
     CARD_CURR_BATCH_FIELD_NUMBER: builtins.int
     card_type: builtins.str
-    """卡片类型
+    """卡片类型 
     ugc:ugc卡 pgc:pgc卡 currSeason:付费课程系列 currBatch:付费课程批次
     """
     @property

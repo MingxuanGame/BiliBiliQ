@@ -7,9 +7,9 @@ from typing import Any, Dict, Tuple, Union, Literal, Optional
 
 import rsa
 
-from .typing import StrDict
-from .request import request_passport
-from .exception import (
+from bilibiliq.typing import StrDict
+from bilibiliq.request import request_passport
+from bilibiliq.exception import (
     RESTError,
     NeedVerify,
     NotScanQRCode,

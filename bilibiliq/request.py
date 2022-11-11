@@ -4,8 +4,8 @@ from typing import Any, Tuple, Literal
 from yarl import URL
 from aiohttp import ClientSession
 
-from .typing import AnyDict
-from .exception import raise_for_code
+from bilibiliq.typing import AnyDict
+from bilibiliq.exception import raise_for_code
 
 
 async def request(

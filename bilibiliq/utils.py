@@ -3,7 +3,7 @@ import hashlib
 from copy import deepcopy
 from typing import Tuple, Optional
 
-from bilibiliq.auth import Auth
+from bilibiliq._auth import Auth
 from bilibiliq.internal.pb.bilibili.metadata.metadata_pb2 import Metadata
 from bilibiliq.internal.pb.bilibili.metadata.device.device_pb2 import Device
 from bilibiliq.internal.pb.bilibili.metadata.locale.locale_pb2 import Locale

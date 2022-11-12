@@ -1,14 +1,13 @@
 import time
 import base64
 from hashlib import md5
-from dataclasses import dataclass
 from urllib.parse import urlencode
 from typing import Any, Dict, Tuple, Union, Literal, Optional
 
 import rsa
 
 from bilibiliq.typing import StrDict
-from bilibiliq.request import request_passport
+from bilibiliq.internal.client import request_passport
 from bilibiliq.exception import (
     RESTError,
     NeedVerify,
@@ -17,19 +16,10 @@ from bilibiliq.exception import (
     QRCodeNotAccepted,
 )
 
+from ._auth import Auth as Auth
+
 APP_KEY = "4409e2ce8ffd12b8"
 APP_SECRET = "59b43e04ad6965f34319062b478f83dd"
-
-
-@dataclass
-class Auth:
-    DedeUserID: Optional[str] = None
-    DedeUserID__ckMd5: Optional[str] = None
-    SESSDATA: Optional[str] = None
-    bili_jct: Optional[str] = None
-    sid: Optional[str] = None
-    refresh_token: Optional[str] = None
-    access_token: Optional[str] = None
 
 
 async def get_captcha() -> StrDict:

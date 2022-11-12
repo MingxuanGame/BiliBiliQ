@@ -10,6 +10,8 @@ dependencies = [
     "aiohttp[speedups]>=3.8.3",
     "rsa>=4.9",
     "pydantic>=1.10.2",
+    "appdirs>=1.4.4",
+    "typing-extensions>=4.4.0",
 ]
 requires-python = ">=3.8"
 readme = "README.md"
@@ -30,7 +32,7 @@ extend-exclude = '''
 '''
 
 [tool.pyright]
-exclude = ["bilibiliq/internal/pb/**/*_pb2.py", "bilibiliq/internal/grpc", "**/__pycache__", ".venv"]
+exclude = ["bilibiliq/internal/pb", "bilibiliq/internal/grpc", "**/__pycache__", ".venv"]
 venvPath = "."
 venv = ".venv"
 
@@ -59,3 +61,6 @@ dev = [
 includes = [
     "bilibiliq"
 ]
+
+[project.scripts]
+bilibiliq-auth = "bilibiliq.__main__:main"

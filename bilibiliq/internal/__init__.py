@@ -1,1 +1,1 @@
-__all__ = ["grpc", "pb", "client"]
+__all__ = ["grpc", "pb", "client"]  # pyright: ignore

@@ -29,12 +29,6 @@ repos:
       - id: flake8
         exclude: ^(bilibiliq/internal/pb|bilibiliq/internal/grpc)
 
-  - repo: https://github.com/sourcery-ai/sourcery
-    rev: v0.13.0
-    hooks:
-      - id: sourcery
-        args: [--diff=git diff HEAD, --no-summary]
-
   - repo: https://github.com/RobertCraigie/pyright-python
     rev: v1.1.278
     hooks:

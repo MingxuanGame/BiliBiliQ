@@ -29,12 +29,6 @@ repos:
       - id: flake8
         exclude: ^(bilibiliq/internal/pb|bilibiliq/internal/grpc)
 
-  - repo: https://github.com/RobertCraigie/pyright-python
-    rev: v1.1.278
-    hooks:
-      - id: pyright
-        exclude: ^(bilibiliq/internal/pb|bilibiliq/internal/grpc)
-
 
   # - repo: local
   #   hooks:

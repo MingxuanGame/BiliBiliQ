@@ -21,7 +21,7 @@ if sys.platform == "win32":
     _loop = asyncio.new_event_loop()
     asyncio.set_event_loop(_loop)
 else:
-    _loop = asyncio.get_running_loop()
+    _loop = asyncio.get_event_loop()
 
 DESC = """
 BiliBiliQ 命令行程序，可用于获取或保存鉴权信息，供程序使用

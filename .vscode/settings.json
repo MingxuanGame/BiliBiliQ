@@ -1,7 +1,11 @@
 {
   "cSpell.words": [
+    "aiohttp",
+    "bili",
     "bilibili",
     "bilibiliq",
+    "coro",
+    "Dede",
     "geetest",
     "levelname",
     "protobuf",
@@ -9,6 +13,9 @@
     "protos",
     "pyright",
     "qrcode",
-    "seccode"
+    "seccode",
+    "seqno",
+    "SESSDATA",
+    "SIGTERM"
   ]
 }

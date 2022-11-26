@@ -12,6 +12,23 @@ from bilibiliq.internal.pb.bilibili.metadata.network.network_pb2 import (
     NetworkType,
 )
 
+KEY_MAP = "0123456789ABCDEF"
+BASE = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
+
+
+def generate_dev_id() -> str:
+    result = ""
+    for s in BASE:
+        if s in {"-", "4"}:
+            result += s
+            continue
+        random_int = random.randint(0, 15)
+        if s == "x":
+            result += KEY_MAP[random_int]
+        else:
+            result += KEY_MAP[3 & random_int | 8]
+    return result
+
 
 def fake_buvid():
     mac_list = []

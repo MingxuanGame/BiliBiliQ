@@ -30,6 +30,7 @@ class BaseRESTClient:
         domain: str,
         endpoint: str,
         method: Literal["GET", "POST"],
+        auth: Optional[Auth] = None,
         **kwargs: Any,
     ) -> Tuple[AnyDict, SimpleCookie]:
         headers = kwargs.pop("headers", {})
@@ -44,22 +45,23 @@ class BaseRESTClient:
             ),
         )
         params = kwargs.pop("params", None)
-        if self.auth:
+        if auth is None:
+            auth = self.auth
+        if auth is not None:
             headers.setdefault(
                 "cookie",
                 " ".join(
                     [
                         f"{k}={v};"
-                        for k, v in self.auth.dict(exclude_none=True).items()
+                        for k, v in auth.dict(exclude_none=True).items()
                     ]
                 ),
             )
-            if access_key := self.auth.access_token:
+            if access_key := auth.access_token:
                 if params:
                     params["access_key"] = access_key
                 else:
                     params = {"access_key": access_key}
-
         resp = await self.session.request(
             method,
             URL(domain) / endpoint,
@@ -73,11 +75,39 @@ class BaseRESTClient:
         return data["data"] or {}, resp.cookies
 
     async def request_api(
-        self, endpoint: str, method: Literal["GET", "POST"], **kwargs: Any
+        self,
+        endpoint: str,
+        method: Literal["GET", "POST"],
+        auth: Optional[Auth] = None,
+        **kwargs: Any,
     ) -> Tuple[AnyDict, AnyDict]:
 
         return await self.rest_request(
-            "https://api.bilibili.com", endpoint, method, **kwargs
+            "https://api.bilibili.com", endpoint, method, auth, **kwargs
+        )
+
+    async def request_vc_api(
+        self,
+        endpoint: str,
+        method: Literal["GET", "POST"],
+        auth: Optional[Auth] = None,
+        **kwargs: Any,
+    ) -> Tuple[AnyDict, AnyDict]:
+
+        return await self.rest_request(
+            "https://api.vc.bilibili.com", endpoint, method, auth, **kwargs
+        )
+
+    async def request_message_api(
+        self,
+        endpoint: str,
+        method: Literal["GET", "POST"],
+        auth: Optional[Auth] = None,
+        **kwargs: Any,
+    ) -> Tuple[AnyDict, AnyDict]:
+
+        return await self.rest_request(
+            "https://message.bilibili.com", endpoint, method, auth, **kwargs
         )
 
     def set_auth(self, auth: Auth) -> None:
@@ -116,17 +146,26 @@ class BaseGrpcClient:
         )
 
     async def grpc_request(
-        self, stub: Type[Any], service: str, request: Message
+        self,
+        stub: Type[Any],
+        service: str,
+        request: Message,
+        auth: Optional[Auth] = None,
     ) -> Any:
+        metadata = make_metadata(auth) if auth else self.metadata
         return await getattr(stub(self.channel), service)(
-            request, metadata=self.metadata
+            request, metadata=metadata
         )
 
     async def grpc_request_dict(
-        self, stub: Type[Any], service: str, request: Message
+        self,
+        stub: Type[Any],
+        service: str,
+        request: Message,
+        auth: Optional[Auth] = None,
     ) -> Any:
         return MessageToDict(
-            await self.grpc_request(stub, service, request),
+            await self.grpc_request(stub, service, request, auth),
             including_default_value_fields=True,
             preserving_proto_field_name=True,
         )

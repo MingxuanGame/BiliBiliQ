@@ -8,9 +8,6 @@ Work in process
 import asyncio
 
 from bilibiliq.auth import qrcode_terminal_login
-import asyncio
-
-from bilibiliq.auth import qrcode_terminal_login
 from bilibiliq.grpc.dynamic import DynamicClient
 
 

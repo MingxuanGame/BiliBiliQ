@@ -7,7 +7,9 @@ from pydantic import HttpUrl, BaseModel, validator
 class Label(BaseModel):
     """大会员标签"""
 
-    text: Literal["大会员", "年度大会员", "十年大会员", "百年大会员", "最强绿鲤鱼", ""]
+    text: Literal[
+        "大会员", "年度大会员", "十年大会员", "百年大会员", "最强绿鲤鱼", ""
+    ]
     """会员类型文案"""
     label_theme: Literal[
         "vip",

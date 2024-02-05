@@ -255,6 +255,7 @@ class Sessions(BaseModel):
     """会话列表"""
     has_more: bool
     """是否还有更多会话"""
+
     # show_level: bool
     def __init__(self, **data: Any) -> None:
         for i in data["session_list"]:

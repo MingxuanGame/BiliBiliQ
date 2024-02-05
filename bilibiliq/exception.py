@@ -1,5 +1,4 @@
-class BiliBiliError(Exception):
-    ...
+class BiliBiliError(Exception): ...
 
 
 class RESTError(BiliBiliError):

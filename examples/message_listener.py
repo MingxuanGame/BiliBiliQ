@@ -29,7 +29,9 @@ async def callback(event: Event, client: MessageClient):
         logging.info(f"{event.sender_uid} 撤回了一条消息：{s}")
     elif isinstance(event, MessageEvent):
         if len(event.content) == 1 and isinstance(event.content[0], Image):
-            logging.info(f"{event.sender_uid} 发送了一张图片：{event.content[0].url}")
+            logging.info(
+                f"{event.sender_uid} 发送了一张图片：{event.content[0].url}"
+            )
         else:
             msg = ''.join(str(i) for i in event.content)
             logging.info(f"{event.sender_uid} 发送了一条消息：{msg}")
@@ -56,7 +58,9 @@ async def callback(event: Event, client: MessageClient):
             f"{'等人' if len(event.users)>1 else ''}点赞，共 {event.counts} 个赞"
         )
     elif isinstance(event, SystemNotifyEvent):
-        logging.info(f"收到系统通知：\n标题：{event.title}\n内容：{event.content}")
+        logging.info(
+            f"收到系统通知：\n标题：{event.title}\n内容：{event.content}"
+        )
 
 
 async def run():

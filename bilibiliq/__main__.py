@@ -73,7 +73,9 @@ BiliBiliQ 命令行程序，可用于获取或保存鉴权信息，供程序使�
 
 async def _geetest() -> Tuple[str, str, str]:
     captcha = await get_captcha()
-    print("请前往 https://kuresaru.github.io/geetest-validator 进行 geetest 验证")
+    print(
+        "请前往 https://kuresaru.github.io/geetest-validator 进行 geetest 验证"
+    )
     print(f"gt: {captcha['gt']}")
     print(f"challenge: {captcha['challenge']}")
     validate = input("validate >>> ")
@@ -174,7 +176,12 @@ def main() -> None:
     )
 
     parser.add_argument(
-        "-s", "--save-file", nargs="?", type=str, const=..., help="保存鉴权信息"
+        "-s",
+        "--save-file",
+        nargs="?",
+        type=str,
+        const=...,
+        help="保存鉴权信息",
     )
     subparsers = parser.add_subparsers(help="登录方式", dest="type")
 
@@ -186,7 +193,9 @@ def main() -> None:
     password_parser = subparsers.add_parser("password", help="密码登录")
     password_parser.add_argument("account", type=str, help="手机号或邮箱地址")
     password_parser.add_argument("password", type=str, help="密码")
-    qrcode_parser = subparsers.add_parser("qrcode", help="密码登录")  # noqa: F841
+    qrcode_parser = subparsers.add_parser(
+        "qrcode", help="密码登录"
+    )  # noqa: F841
 
     namespace = parser.parse_args()
     if namespace.type is None:
